@@ -18,12 +18,9 @@ __pycache__/
 staticfiles/
 
 # Ignore environment variable files
-venv
+.env
 
 .idea/
 
-<<<<<<< HEAD
 env/
 env
-=======
->>>>>>> 03abff2a997f6ac2938a60ae1eb93c5b06f0e3f9
