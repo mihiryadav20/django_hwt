@@ -38,10 +38,19 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'theapp',
     'rest_framework',
-    'rest_framework.authtoken',  # Add this line for token authentication
+    'rest_framework.authtoken',
+    'corsheaders',
+]
+
+CORS_ALLOW_ALL_ORIGINS = True
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:5173",  # Default SvelteKit dev server
+    "http://localhost:3000",  # If you're using a different port
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',

@@ -1,8 +1,10 @@
-from rest_framework import generics, permissions, status
+from rest_framework import generics, permissions, status, viewsets
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from django.contrib.auth.models import User
-from .serializers import RegisterSerializer, UserSerializer
+
+from .models import Post
+from .serializers import RegisterSerializer, UserSerializer, PostSerializer
 from rest_framework.authtoken.models import Token
 from rest_framework.authtoken.views import ObtainAuthToken
 
@@ -65,3 +67,12 @@ class TestAuthView(APIView):
             'message': 'Authentication successful!',
             'user': UserSerializer(request.user).data
         })
+
+
+class PostViewSet(viewsets.ModelViewSet):
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+
+    def perform_create(self, serializer):
+        serializer.save(author=self.request.user)
