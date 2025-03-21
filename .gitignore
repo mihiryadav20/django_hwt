@@ -24,3 +24,5 @@ staticfiles/
 
 env/
 env
+
+myenv
